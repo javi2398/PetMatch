@@ -1,0 +1,15 @@
+# backend/Dockerfile
+FROM python:3.12-slim
+
+WORKDIR /app
+
+# Copiar requirements y instalar
+COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Copiar todo el código
+COPY . .
+
+EXPOSE 8000
+
+CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
